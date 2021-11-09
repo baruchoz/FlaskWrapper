@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Hello World!!!!!!!</h1>
+
+<form action="" method="post">
+    {{ form.csrf_token }}
+    <div class="form-group">
+        <fieldset>
+            {{ form.title.label }}
+            {{ form.title(class='form-control', placeholder='Search TV Show here') }}
+        </fieldset>
+        {{ form.submit(class='btn btn-success') }}
+    </div>
+</form>
+
+{% if show_list %}
+<div class="row">
+    {% for show in show_list %}
+        <div class="col-6 col-md-4">
+            <div class="card">
+                <img src="{{ show.image }}" class="card-img-top" alt="{{ show.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ show.title }}</h5>
+                    <p class="card-text">{{ show.summary|striptags }}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock content %}
